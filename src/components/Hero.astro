@@ -1,0 +1,59 @@
+---
+import Icon from './Icon.astro';
+import Character from './Character.astro';
+import hero from '../data/hero.json';
+import settings from '../data/settings.json';
+import { rich } from '../lib/rich.js';
+---
+<section id="hero" class="hero" data-shape="chart" data-anchor="#hero-object" data-opacity="1">
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <div class="container hero-inner">
+    <div class="hero-main">
+      {hero.badge && (
+        <p class="hero-tag rise" style="--d:0s"><span class="hero-tag-dot" aria-hidden="true"></span>{hero.badge}</p>
+      )}
+
+      {hero.kicker && (
+        <p class="hero-kicker rise" style="--d:0s"><strong>{hero.kicker}</strong>{hero.kickerRole && <span>{hero.kickerRole}</span>}</p>
+      )}
+
+      <h1 class="hero-title" aria-label={`${hero.nameLine} ${hero.titleAccent} ${hero.titleMuted || ''}`.trim()}>
+        <span class="line line-1" aria-hidden="true"><span class="grad-white rise" style="--d:.05s">{hero.nameLine}</span></span>
+        <span class="line line-2" aria-hidden="true"><span class="grad-red rise" style="--d:.18s">{hero.titleAccent}</span></span>
+        {hero.titleMuted && <span class="line line-3" aria-hidden="true"><span class="grad-gray rise" style="--d:.31s">{hero.titleMuted}</span></span>}
+      </h1>
+
+      <div class="hero-art rise" style="--d:.4s">
+        <Character bubbles={hero.bubbles || []} name={settings.name} />
+      </div>
+
+      <p class="hero-intro rise" style="--d:.55s" set:html={rich(hero.intro)} />
+
+      <div class="hero-ctas rise" style="--d:.65s">
+        <a class="btn btn-primary" href="/#work-with-me" data-cta data-magnet data-location="hero">
+          {hero.primaryButton}<Icon name="arrow" size={16} />
+        </a>
+        <a class="btn btn-outline" href={settings.cvFile} download data-cv data-magnet data-location="hero">
+          {hero.secondaryButton}<Icon name="download" size={16} />
+        </a>
+      </div>
+    </div>
+
+    <div class="stats">
+      {hero.stats.map((s, i) => (
+        <div class="stat rise" style={`--d:${0.75 + i * 0.08}s`}>
+          <div class="stat-top">
+            <div class="stat-value grad-red-2">{s.value}</div>
+            <div class="stat-icon" aria-hidden="true">{s.icon}</div>
+          </div>
+          <div class="stat-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <a class="scroll-cue rise" style="--d:1.1s" href="/#clients" aria-label="Scroll to clients">
+    <span class="scroll-mouse" aria-hidden="true"><span></span></span>Scroll to explore
+  </a>
+</section>

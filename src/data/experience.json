@@ -1,0 +1,105 @@
+{
+  "eyebrow": "Career so far",
+  "title": "Where I've done this before",
+  "subtitle": "6+ years of [[growing revenue]] through paid media, tracking and testing",
+  "jobs": [
+    {
+      "title": "Digital Marketing Manager",
+      "company": "Unstitched",
+      "location": "",
+      "period": "Jul 2024 - Present",
+      "achievements": [
+        "Managing and optimising PPC campaigns across Google Ads, Meta Ads, ChatGPT Ads and social media channels",
+        "Set up full-funnel tracking with Google Tag Manager, GA4 and server-side events",
+        "Analysing campaign performance metrics (CTR, CPC, ROAS, ROI, etc.) and providing actionable insights",
+        "Staying updated with industry trends and implementing new PPC strategies, such as AI-powered bidding and privacy-centric advertising",
+        "Grew revenue from paid channels by 60% while keeping CAC flat",
+        "Designed and deployed n8n workflows to automate lead follow-up, data syncing and campaign reporting, reducing manual work for the marketing and sales teams"
+      ],
+      "tools": [
+        "Google Ads",
+        "Meta Ads",
+        "ChatGPT Ads",
+        "Google Tag Manager",
+        "Google Analytics 4",
+        "n8n"
+      ]
+    },
+    {
+      "title": "Performance Marketing Specialist",
+      "company": "Cryptic Intel",
+      "location": "Bengaluru, India",
+      "period": "Nov 2022 - May 2024",
+      "achievements": [
+        "Managed a monthly budget of ₹50L+ across search, shopping and social campaigns",
+        "Ran A/B tests on creatives and landing pages that lifted conversion rate by 25%",
+        "Built audience segments and remarketing flows for high-intent users"
+      ],
+      "tools": [
+        "Google Ads",
+        "Meta Ads",
+        "Google Shopping",
+        "SEMrush",
+        "Hotjar",
+        "Shopify"
+      ]
+    },
+    {
+      "title": "Digital Marketing Associate",
+      "company": "Crewtangle LLP",
+      "location": "",
+      "period": "Jul 2021 - Sep 2022",
+      "achievements": [
+        "Led social media strategy and increased engagement through content creation and community management on Instagram, Twitter and LinkedIn.",
+        "Optimised the daily performance of SEM, SEO, affiliate networks, email marketing, social media and display remarketing.",
+        "Ran A/B tests on 30+ marketing campaigns and recommended improvements."
+      ],
+      "tools": [
+        "Google Ads",
+        "Instagram",
+        "LinkedIn",
+        "SEMrush",
+        "Affiliate Networks",
+        "A/B Testing"
+      ]
+    },
+    {
+      "title": "Digital Marketing Executive",
+      "company": "OrgGen Technologies",
+      "location": "",
+      "period": "Dec 2019 - Jul 2021",
+      "achievements": [
+        "Helped build and run email marketing automation, achieving an open rate 12% above the industry average.",
+        "Wrote and tested direct-response ad copy for Meta and Google, achieving a 17% higher CTR than benchmarks.",
+        "Did keyword research and analysis to spot trends and optimise website content for search engines."
+      ],
+      "tools": [
+        "Meta Ads",
+        "Google Ads",
+        "Email Automation",
+        "Keyword Research",
+        "SEO"
+      ]
+    }
+  ],
+  "highlightsTitle": "Professional Highlights",
+  "highlights": [
+    "Achieved 15.46x ROAS for a major client",
+    "Built a LinkedIn marketing automation that raised conversion efficiency by 17%",
+    "Won the \"Best Performer\" title four times in one year"
+  ],
+  "education": [
+    {
+      "degree": "MBA in Marketing",
+      "school": "Mumbai University",
+      "years": "2018 - 2020",
+      "field": ""
+    },
+    {
+      "degree": "Bachelor of Mass Media (BMM)",
+      "field": "Major in Advertising",
+      "school": "Mumbai University",
+      "years": "2015 - 2018"
+    }
+  ]
+}

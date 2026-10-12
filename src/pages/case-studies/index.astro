@@ -1,0 +1,36 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Icon from '../../components/Icon.astro';
+import cs from '../../data/case-studies.json';
+import settings from '../../data/settings.json';
+import { rich } from '../../lib/rich.js';
+---
+<Base title={`Case Studies | ${settings.name}`} description={`Performance marketing case studies by ${settings.name}: ROAS, CPA, attribution, automation and new business results.`} path="/case-studies/">
+  <Nav />
+  <main>
+    <section class="cs-hero section-grad" data-shape="target" data-side="right" data-scale=".85" data-opacity=".7">
+      <div class="container" style="text-align:center">
+        <span class="eyebrow"><span class="dot"></span>{cs.eyebrow}</span>
+        <h1 class="cs-page-title grad-white">{cs.title}</h1>
+        <p class="section-sub" set:html={rich(cs.subtitle)} />
+      </div>
+    </section>
+    <div class="container cs-body">
+      <div class="cs-list">
+        {cs.items.map((item) => (
+          <a class="cs-card card-glass" data-cursor="View" href={`/case-studies/${item.slug}/`}>
+            <span class="cs-tab-ind">{item.industry}</span>
+            <span class="cs-card-value grad-red-2">{item.headlineValue}</span>
+            <span class="cs-card-label">{item.headlineLabel}</span>
+            <h2 class="cs-card-title">{item.title}</h2>
+            <p class="cs-card-sum">{item.summary}</p>
+            <span class="cs-card-more">{cs.readMoreLabel}<Icon name="arrow" size={14} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>

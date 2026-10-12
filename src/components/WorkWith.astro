@@ -1,0 +1,41 @@
+---
+// "Two ways we can work together": one card for hiring teams, one for freelance clients.
+// Content: src/data/workwith.json (admin → Work With Me).
+import Icon from './Icon.astro';
+import w from '../data/workwith.json';
+import settings from '../data/settings.json';
+import { rich } from '../lib/rich.js';
+---
+<section id="work-with-me" class="section workwith">
+  <div class="container">
+    <header class="section-head">
+      <span class="eyebrow" data-fade><span class="dot"></span>{w.eyebrow}</span>
+      <h2 class="h2-big grad-white">{w.title}</h2>
+      <p class="section-sub" data-fade set:html={rich(w.subtitle)} />
+    </header>
+
+    <div class="ww-grid" data-fade>
+      {w.cards.map((c, i) => (
+        <article class={`ww-card card-glass ${i === 1 ? 'is-accent' : ''}`}>
+          <div class="ww-top">
+            <span class="ww-icon"><Icon name={c.icon || 'sparkle'} size={22} /></span>
+            <span class="ww-tag">{c.tag}</span>
+          </div>
+          <h3>{c.title}</h3>
+          <p class="ww-text">{c.text}</p>
+          <ul class="ww-points">
+            {c.points.map((pt) => <li><span class="side-dot" aria-hidden="true"></span>{pt}</li>)}
+          </ul>
+          <div class="ww-ctas">
+            {c.primaryAction === 'cv'
+              ? <a class="btn btn-primary" href={settings.cvFile} download data-cv data-magnet data-location="work-with-me">{c.primaryLabel}<Icon name="download" size={16} /></a>
+              : <a class="btn btn-primary" href="/#contact" data-cta data-intent={c.intent} data-magnet data-location="work-with-me">{c.primaryLabel}<Icon name="arrow" size={16} /></a>}
+            {c.secondaryLabel && (
+              <a class="ww-link" href={c.secondaryHref || '/#contact'} data-intent={c.secondaryHref ? undefined : c.intent} data-cta data-location="work-with-me">{c.secondaryLabel}<Icon name="arrow" size={14} /></a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

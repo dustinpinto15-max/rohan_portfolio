@@ -1,0 +1,383 @@
+{
+  "title": "What I'm good at",
+  "subtitle": "Hands-on across paid media, tracking, automation and team leadership",
+  "categories": [
+    {
+      "name": "Paid Advertising",
+      "icon": "target",
+      "description": "Plan, launch and scale campaigns across search, social and retail media",
+      "items": [
+        {
+          "name": "Google Ads",
+          "years": "6+ years",
+          "level": 95
+        },
+        {
+          "name": "Meta Ads",
+          "years": "6+ years",
+          "level": 95
+        },
+        {
+          "name": "LinkedIn Ads",
+          "years": "3 years",
+          "level": 80
+        },
+        {
+          "name": "Amazon Ads (SP, SB, SD)",
+          "years": "2 years",
+          "level": 75
+        }
+      ]
+    },
+    {
+      "name": "Analytics & Tracking",
+      "icon": "chart",
+      "description": "Clean tracking and clear dashboards so every rupee can be measured",
+      "items": [
+        {
+          "name": "Google Analytics 4",
+          "years": "5 years",
+          "level": 95
+        },
+        {
+          "name": "Google Tag Manager",
+          "years": "5 years",
+          "level": 95
+        },
+        {
+          "name": "Looker Studio",
+          "years": "4 years",
+          "level": 90
+        },
+        {
+          "name": "Server-side Tracking",
+          "years": "2 years",
+          "level": 75
+        }
+      ]
+    },
+    {
+      "name": "CRM & Automation",
+      "icon": "sparkle",
+      "description": "Lead scoring, email drips and CRM syncs that cut manual work by 40%",
+      "items": [
+        {
+          "name": "LeadSquared",
+          "years": "2 years",
+          "level": 80
+        },
+        {
+          "name": "Zoho CRM",
+          "years": "2 years",
+          "level": 75
+        },
+        {
+          "name": "HubSpot",
+          "years": "2 years",
+          "level": 75
+        },
+        {
+          "name": "n8n Workflows",
+          "years": "1 year",
+          "level": 70
+        }
+      ]
+    },
+    {
+      "name": "Strategy & Research",
+      "icon": "search",
+      "description": "Direct-response strategy, funnel design and competitor research",
+      "items": [
+        {
+          "name": "Funnel Strategy",
+          "years": "5 years",
+          "level": 90
+        },
+        {
+          "name": "Multi-touch Attribution",
+          "years": "3 years",
+          "level": 80
+        },
+        {
+          "name": "Competitor Research",
+          "years": "5 years",
+          "level": 85
+        },
+        {
+          "name": "Budget Management",
+          "years": "4 years",
+          "level": 90
+        }
+      ]
+    },
+    {
+      "name": "Copy & Content",
+      "icon": "mail",
+      "description": "Ad copy, email and SEO content tested for higher CTR and open rates",
+      "items": [
+        {
+          "name": "Direct-response Copy",
+          "years": "6+ years",
+          "level": 90
+        },
+        {
+          "name": "Email Marketing",
+          "years": "5 years",
+          "level": 85
+        },
+        {
+          "name": "AI Copy (ChatGPT, AdCreative.ai)",
+          "years": "2 years",
+          "level": 80
+        },
+        {
+          "name": "SEO & Keyword Research",
+          "years": "4 years",
+          "level": 75
+        }
+      ]
+    },
+    {
+      "name": "Leadership & Clients",
+      "icon": "users",
+      "description": "Leading teams, retaining clients and winning new business",
+      "items": [
+        {
+          "name": "Team Leadership",
+          "years": "2 years",
+          "level": 85
+        },
+        {
+          "name": "Client Retention & QBRs",
+          "years": "4 years",
+          "level": 85
+        },
+        {
+          "name": "Crisis Management",
+          "years": "4 years",
+          "level": 80
+        },
+        {
+          "name": "Sales Pitches",
+          "years": "2 years",
+          "level": 80
+        }
+      ]
+    }
+  ],
+  "toolsTitle": "Tools & Platforms",
+  "toolsSubtitle": "The stack I use every day. Drag it to spin.",
+  "tools": [
+    {
+      "name": "Google Ads",
+      "category": "Advertising",
+      "icon": "logos:google-ads",
+      "color": "#4285F4",
+      "logo": ""
+    },
+    {
+      "name": "Meta Ads",
+      "category": "Advertising",
+      "icon": "logos:meta-icon",
+      "color": "#0467DF",
+      "logo": ""
+    },
+    {
+      "name": "LinkedIn Ads",
+      "category": "Advertising",
+      "icon": "logos:linkedin-icon",
+      "color": "#0A66C2",
+      "logo": ""
+    },
+    {
+      "name": "Amazon Ads",
+      "category": "Retail Media",
+      "icon": "fa6:amazon",
+      "color": "#FF9900",
+      "logo": ""
+    },
+    {
+      "name": "TikTok Ads",
+      "category": "Advertising",
+      "icon": "logos:tiktok-icon",
+      "color": "#111111",
+      "logo": ""
+    },
+    {
+      "name": "Pinterest Ads",
+      "category": "Advertising",
+      "icon": "logos:pinterest",
+      "color": "#BD081C",
+      "logo": ""
+    },
+    {
+      "name": "GA4",
+      "category": "Analytics",
+      "icon": "logos:google-analytics",
+      "color": "#E37400",
+      "logo": ""
+    },
+    {
+      "name": "Tag Manager",
+      "category": "Tracking",
+      "icon": "logos:google-tag-manager",
+      "color": "#246FDB",
+      "logo": ""
+    },
+    {
+      "name": "Looker Studio",
+      "category": "Reporting",
+      "icon": "logos:looker-icon",
+      "color": "#4285F4",
+      "logo": ""
+    },
+    {
+      "name": "BigQuery",
+      "category": "Data",
+      "icon": "si:googlebigquery",
+      "color": "#669DF6",
+      "logo": ""
+    },
+    {
+      "name": "AppsFlyer",
+      "category": "App Attribution",
+      "icon": "",
+      "color": "#23B24B",
+      "logo": ""
+    },
+    {
+      "name": "SEMrush",
+      "category": "SEO",
+      "icon": "si:semrush",
+      "color": "#FF642D",
+      "logo": ""
+    },
+    {
+      "name": "Ahrefs",
+      "category": "SEO",
+      "icon": "",
+      "color": "#054ADA",
+      "logo": ""
+    },
+    {
+      "name": "Hotjar",
+      "category": "CRO",
+      "icon": "logos:hotjar-icon",
+      "color": "#FF3C00",
+      "logo": ""
+    },
+    {
+      "name": "LeadSquared",
+      "category": "CRM",
+      "icon": "",
+      "color": "#2E5BFF",
+      "logo": ""
+    },
+    {
+      "name": "Zoho CRM",
+      "category": "CRM",
+      "icon": "logos:zoho",
+      "color": "#E42527",
+      "logo": ""
+    },
+    {
+      "name": "HubSpot",
+      "category": "CRM",
+      "icon": "fa6:hubspot",
+      "color": "#FF7A59",
+      "logo": ""
+    },
+    {
+      "name": "n8n",
+      "category": "Automation",
+      "icon": "logos:n8n-icon",
+      "color": "#EA4B71",
+      "logo": ""
+    },
+    {
+      "name": "Zapier",
+      "category": "Automation",
+      "icon": "logos:zapier-icon",
+      "color": "#FF4F00",
+      "logo": ""
+    },
+    {
+      "name": "Klaviyo",
+      "category": "Email",
+      "icon": "",
+      "color": "#2B2B2B",
+      "logo": ""
+    },
+    {
+      "name": "ChatGPT",
+      "category": "AI Copy",
+      "icon": "logos:openai-icon",
+      "color": "#10A37F",
+      "logo": ""
+    },
+    {
+      "name": "AdCreative.ai",
+      "category": "AI Creative",
+      "icon": "",
+      "color": "#6D4AFF",
+      "logo": ""
+    },
+    {
+      "name": "Canva",
+      "category": "Design",
+      "icon": "",
+      "color": "#00C4CC",
+      "logo": ""
+    },
+    {
+      "name": "Figma",
+      "category": "Design",
+      "icon": "logos:figma",
+      "color": "#F24E1E",
+      "logo": ""
+    },
+    {
+      "name": "Unbounce",
+      "category": "Landing Pages",
+      "icon": "logos:unbounce-icon",
+      "color": "#0033FF",
+      "logo": ""
+    },
+    {
+      "name": "WordPress",
+      "category": "CMS",
+      "icon": "logos:wordpress-icon",
+      "color": "#21759B",
+      "logo": ""
+    },
+    {
+      "name": "Shopify",
+      "category": "E-commerce",
+      "icon": "logos:shopify",
+      "color": "#7AB55C",
+      "logo": ""
+    },
+    {
+      "name": "Excel",
+      "category": "Analysis",
+      "icon": "vsc:file-type-excel",
+      "color": "#217346",
+      "logo": ""
+    },
+    {
+      "name": "PowerPoint",
+      "category": "Reporting",
+      "icon": "vsc:file-type-powerpoint",
+      "color": "#D24726",
+      "logo": ""
+    },
+    {
+      "name": "Outlook",
+      "category": "Communication",
+      "icon": "vsc:file-type-outlook",
+      "color": "#0078D4",
+      "logo": ""
+    }
+  ],
+  "certificationsTitle": "Certifications"
+}

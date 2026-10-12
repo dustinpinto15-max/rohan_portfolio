@@ -1,0 +1,41 @@
+{
+  "badge": "",
+  "kicker": "Hi, I'm Rohan Nakte 👋",
+  "kickerRole": "Performance marketer · Mumbai",
+  "nameLine": "I turn ad spend",
+  "titleAccent": "into revenue.",
+  "titleMuted": "",
+  "intro": "For 6+ years I have launched and scaled [[paid campaigns on Google, Meta, TikTok, Amazon and ChatGPT Ads]] for D2C startups and international brands. Hiring a performance marketing lead? Need a freelancer to grow your ads? **You are in the right place.**",
+  "primaryButton": "Work with me",
+  "secondaryButton": "Download CV",
+  "stats": [
+    {
+      "icon": "🚀",
+      "value": "500+",
+      "label": "Campaigns launched"
+    },
+    {
+      "icon": "💰",
+      "value": "$1M+",
+      "label": "Revenue generated"
+    },
+    {
+      "icon": "⭐",
+      "value": "98%",
+      "label": "Client satisfaction"
+    },
+    {
+      "icon": "📈",
+      "value": "6+",
+      "label": "Years experience"
+    }
+  ],
+  "bubbles": [
+    "Hey! Good to see you 👋",
+    "Hiring a performance marketing lead?",
+    "Or need a freelancer to scale your ads?",
+    "Is your ROAS stuck?",
+    "Tracking numbers not adding up?",
+    "I can help. Let's talk 👇"
+  ]
+}

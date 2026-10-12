@@ -1,0 +1,295 @@
+# ============================================================
+#  Decap CMS config: edit your portfolio at yourdomain.com/admin
+#  BEFORE FIRST USE change these 3 lines:
+#    1. repo      → your GitHub username/repo name
+#    2. base_url  → your live site address (same as Site URL)
+#    3. site_url / display_url → your live site address
+# ============================================================
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/YOUR_REPO_NAME
+  branch: main
+  base_url: https://rohannakte.com
+  auth_endpoint: api/auth
+  commit_messages:
+    update: "Content: update {{slug}}"
+
+# For local editing run: npm run cms  (then open http://localhost:4321/admin)
+local_backend: true
+
+site_url: https://rohannakte.com
+display_url: https://rohannakte.com
+logo_url: /favicon.svg
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: content
+    label: Website Content
+    editor: { preview: false }
+    files:
+      # ---------------- SETTINGS ----------------
+      - name: settings
+        label: "1. Site Settings, SEO, Form & Tracking"
+        file: src/data/settings.json
+        fields:
+          - { name: name, label: Your Full Name, widget: string }
+          - { name: brand, label: Logo Text (top left), widget: string, hint: "e.g. ROHAN.NAKTE" }
+          - { name: jobTitle, label: Job Title (used for Google), widget: string }
+          - { name: photo, label: Profile Photo (square), widget: image, required: false, hint: "Shown at the top of the page. Square, at least 320x320." }
+          - { name: siteUrl, label: Site URL, widget: string, hint: "Your live domain, e.g. https://rohannakte.com (no slash at the end)" }
+          - { name: seoTitle, label: SEO Title, widget: string, hint: "Shown in Google results and browser tab. Keep under 60 characters." }
+          - { name: seoDescription, label: SEO Description, widget: text, hint: "Shown under the title in Google. Keep under 160 characters." }
+          - { name: ogImage, label: Share Image (1200x630), widget: image, hint: "Shown when the link is shared on LinkedIn or WhatsApp." }
+          - { name: defaultTheme, label: Default Theme, widget: select, options: [{ label: "Night (dark)", value: dark }, { label: "Day (light)", value: light }, { label: "Follow the visitor's device", value: system }], default: dark, hint: "Visitors can still switch with the sun/moon button. Their choice is remembered." }
+          - { name: gtmId, label: Google Tag Manager ID, widget: string, required: false, hint: "e.g. GTM-ABC1234. Leave empty to turn tracking off." }
+          - { name: web3formsKey, label: Web3Forms Access Key, widget: string, required: false, hint: "Free key from web3forms.com. Contact form messages go to the email you register there." }
+          - { name: email, label: Email, widget: string }
+          - { name: phone, label: Phone, widget: string, required: false }
+          - { name: location, label: Location, widget: string, required: false }
+          - { name: linkedinUrl, label: LinkedIn URL, widget: string, required: false }
+          - { name: instagramUrl, label: Instagram URL, widget: string, required: false }
+          - { name: callUrl, label: Schedule a Call link, widget: string, hint: "Calendly / Google Calendar link. Use #contact to scroll to the form." }
+          - { name: cvFile, label: CV (PDF), widget: file, hint: "Upload your latest CV. The Download CV buttons use this file." }
+          - { name: footerTagline, label: Footer Copyright Text, widget: string }
+          - { name: footerNote, label: Footer Small Note, widget: string, required: false }
+
+      # ---------------- HERO ----------------
+      - name: hero
+        label: "2. Hero (Top of Page)"
+        file: src/data/hero.json
+        fields:
+          - { name: badge, label: Small Badge Text, widget: string, required: false }
+          - { name: kicker, label: Greeting Line (above the headline), widget: string, required: false }
+          - { name: kickerRole, label: Role and City (beside the greeting), widget: string, required: false }
+          - { name: nameLine, label: Headline Line 1 (white), widget: string }
+          - { name: titleAccent, label: Headline Line 2 (red), widget: string }
+          - { name: titleMuted, label: Headline Line 3 (grey, optional), widget: string, required: false }
+          - { name: intro, label: Intro Paragraph, widget: text, hint: "Wrap text in [[double brackets]] to make it red. Wrap in **stars** to make it bold white." }
+          - { name: primaryButton, label: Red Button Text (goes to Work With Me), widget: string }
+          - { name: secondaryButton, label: Outline Button Text (downloads CV), widget: string }
+          - { name: bubbles, label: Character Speech Bubble Lines, widget: list, required: false, field: { name: line, label: Line, widget: string }, hint: "Short lines, like a chat with the visitor. The first one shows on load. He says the next one every few seconds, and on each click." }
+          - name: stats
+            label: Stat Cards
+            widget: list
+            summary: "{{fields.value}} {{fields.label}}"
+            fields:
+              - { name: icon, label: Emoji, widget: string }
+              - { name: value, label: Number, widget: string }
+              - { name: label, label: Label, widget: string }
+
+      # ---------------- CLIENTS ----------------
+      - name: clients
+        label: "3. Top Clients"
+        file: src/data/clients.json
+        fields:
+          - { name: eyebrow, label: Small Label, widget: string }
+          - { name: title, label: Section Title, widget: string }
+          - { name: subtitle, label: Subtitle, widget: text, hint: "Use [[text]] for red highlight." }
+          - name: items
+            label: Clients
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Brand Name, widget: string }
+              - { name: category, label: Industry, widget: string, required: false }
+              - { name: logo, label: White Logo (transparent PNG), widget: image, required: false, hint: "White logo shown on the dark background. If empty, the brand name is shown as text." }
+              - { name: logoColor, label: Colour Logo (transparent PNG), widget: image, required: false, hint: "Shown on a white tile when someone hovers the logo." }
+
+      # ---------------- EXPERIENCE ----------------
+      - name: experience
+        label: "4. Experience, Highlights & Education"
+        file: src/data/experience.json
+        fields:
+          - { name: eyebrow, label: Small Label, widget: string }
+          - { name: title, label: Section Title, widget: string }
+          - { name: subtitle, label: Subtitle, widget: text, hint: "Use [[text]] for red highlight." }
+          - name: jobs
+            label: Jobs (newest first)
+            widget: list
+            summary: "{{fields.title}} at {{fields.company}} ({{fields.period}})"
+            fields:
+              - { name: title, label: Job Title, widget: string }
+              - { name: company, label: Company, widget: string }
+              - { name: location, label: Location / Remote, widget: string, required: false }
+              - { name: period, label: Period, widget: string, hint: "e.g. Jul 2024 - Present" }
+              - { name: achievements, label: Key Achievements, widget: list, field: { name: item, label: Achievement, widget: text } }
+              - { name: tools, label: Technologies Used, widget: list, field: { name: tool, label: Tool, widget: string } }
+          - { name: highlightsTitle, label: Highlights Title, widget: string }
+          - { name: highlights, label: Professional Highlights, widget: list, field: { name: h, label: Highlight, widget: string } }
+          - name: education
+            label: Education
+            widget: list
+            summary: "{{fields.degree}}, {{fields.school}}"
+            fields:
+              - { name: degree, label: Degree / Course, widget: string }
+              - { name: field, label: Subject / Major, widget: string, required: false }
+              - { name: school, label: College / University, widget: string }
+              - { name: years, label: Years, widget: string, required: false, hint: "e.g. 2018 - 2020" }
+
+      # ---------------- WORK WITH ME ----------------
+      - name: workwith
+        label: "3b. Work With Me (two cards)"
+        file: src/data/workwith.json
+        fields:
+          - { name: eyebrow, label: Small Label, widget: string }
+          - { name: title, label: Section Title, widget: string }
+          - { name: subtitle, label: Subtitle, widget: text }
+          - name: cards
+            label: Cards
+            widget: list
+            summary: "{{fields.tag}}"
+            fields:
+              - { name: tag, label: Who It Is For, widget: string }
+              - { name: icon, label: Icon, widget: select, options: [users, trending, target, chart, sparkle, dollar, award, search] }
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: points, label: Points, widget: list, field: { name: p, label: Point, widget: string } }
+              - { name: primaryLabel, label: Button Text, widget: string }
+              - { name: primaryAction, label: Button Does, widget: select, options: [{ label: "Download CV", value: cv }, { label: "Go to contact form", value: contact }] }
+              - { name: secondaryLabel, label: Small Link Text, widget: string, required: false }
+              - { name: secondaryHref, label: Small Link Goes To, widget: string, required: false, hint: "e.g. /#case-studies. Leave empty to go to the contact form." }
+              - { name: intent, label: Form Option To Pick, widget: select, options: [{ label: "Hiring for a role", value: hiring }, { label: "Freelance project", value: freelance }] }
+
+      # ---------------- CASE STUDIES ----------------
+      - name: caseStudies
+        label: "5. Case Studies"
+        file: src/data/case-studies.json
+        fields:
+          - { name: eyebrow, label: Small Label, widget: string }
+          - { name: title, label: Section Title, widget: string }
+          - { name: subtitle, label: Subtitle, widget: text, hint: "Use [[text]] for red highlight." }
+          - { name: buttonLabel, label: Contact Button Text, widget: string }
+          - { name: readMoreLabel, label: Read More Button Text, widget: string }
+          - name: items
+            label: Case Studies
+            widget: list
+            summary: "{{fields.title}}"
+            fields:
+              - { name: slug, label: Page Address, widget: string, pattern: ["^[a-z0-9-]+$", "Use only small letters, numbers and dashes"], hint: "Becomes yoursite.com/case-studies/THIS-TEXT/. Changing it breaks old links." }
+              - { name: title, label: Title, widget: string }
+              - { name: client, label: Client Label (industry only if under NDA), widget: string }
+              - { name: industry, label: Industry, widget: string }
+              - { name: duration, label: Duration, widget: string }
+              - { name: role, label: Your Role, widget: string }
+              - { name: summary, label: Short Summary (also used for Google), widget: text }
+              - { name: headlineValue, label: Headline Number, widget: string, hint: "The big number shown when there is no image, e.g. 15.46x" }
+              - { name: headlineLabel, label: Headline Number Label, widget: string }
+              - { name: image, label: Image (optional, 16:5 wide), widget: image, required: false }
+              - { name: imageCaption, label: Image Caption, widget: string, required: false }
+              - { name: challenge, label: Challenge, widget: text }
+              - { name: solution, label: Solution, widget: text }
+              - name: approach
+                label: How I Did It (steps)
+                widget: list
+                summary: "{{fields.title}}"
+                fields:
+                  - { name: title, label: Step Title, widget: string }
+                  - { name: text, label: Step Text, widget: text }
+              - name: results
+                label: Results (4 works best)
+                widget: list
+                summary: "{{fields.value}} {{fields.label}}"
+                fields:
+                  - { name: value, label: Number, widget: string }
+                  - { name: text, label: Short Line, widget: string }
+                  - { name: label, label: Metric Name, widget: string }
+              - { name: strategies, label: Strategies Used, widget: list, field: { name: s, label: Strategy, widget: string } }
+              - { name: tools, label: Tools & Platforms, widget: list, field: { name: t, label: Tool, widget: string } }
+              - { name: learnings, label: Key Learnings, widget: list, required: false, field: { name: l, label: Learning, widget: text } }
+
+      # ---------------- SKILLS ----------------
+      - name: skills
+        label: "6. Skills & Tools"
+        file: src/data/skills.json
+        fields:
+          - { name: title, label: Section Title, widget: string }
+          - { name: subtitle, label: Subtitle, widget: text }
+          - name: categories
+            label: Skill Cards
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Card Title, widget: string }
+              - { name: icon, label: Icon, widget: select, options: [target, chart, mail, search, users, trending, dollar, award, message, sparkle] }
+              - { name: description, label: Short Description, widget: string }
+              - name: items
+                label: Skills
+                widget: list
+                summary: "{{fields.name}} ({{fields.level}}%)"
+                fields:
+                  - { name: name, label: Skill, widget: string }
+                  - { name: years, label: Years Text, widget: string, hint: "e.g. 5 years" }
+                  - { name: level, label: Bar Level (0-100), widget: number, value_type: int, min: 0, max: 100 }
+          - { name: toolsTitle, label: Tools Heading, widget: string }
+          - { name: toolsSubtitle, label: Tools Sub-heading, widget: string, required: false }
+          - name: tools
+            label: Tools
+            widget: list
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name, label: Tool, widget: string }
+              - { name: category, label: Category, widget: string }
+              - { name: icon, label: Logo Name, widget: string, required: false, hint: "Written as set:name. Sets: logos (full colour, see icon-sets.iconify.design/logos), fa6 (Font Awesome brands), vsc (VS Code icons), si (simpleicons.org). Examples: logos:google-ads, fa6:amazon, si:semrush. Leave empty to show initials." }
+              - { name: logo, label: Own Logo File, widget: image, required: false, hint: "Optional. Upload a square logo. It is used instead of Logo Name." }
+              - { name: color, label: Brand Colour, widget: string, required: false, hint: "Hex colour, e.g. #4285F4. Used for the glow, one-colour logos and initials." }
+          - { name: certificationsTitle, label: Certifications Heading, widget: string }
+
+      # ---------------- CERTIFICATIONS ----------------
+      - name: certifications
+        label: "7. Certifications"
+        file: src/data/certifications.json
+        fields:
+          - name: items
+            label: Certifications
+            widget: list
+            summary: "{{fields.name}} ({{fields.issuer}})"
+            fields:
+              - { name: name, label: Certificate Name, widget: string }
+              - { name: issuer, label: Issued By, widget: string }
+              - { name: year, label: Year, widget: string, required: false }
+
+      # ---------------- VALUES ----------------
+      - name: values
+        label: "8. What I Bring"
+        file: src/data/values.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - name: items
+            label: Points
+            widget: list
+            fields:
+              - { name: icon, label: Icon, widget: select, options: [dollar, chart, users, trending, target, search, mail, award, sparkle] }
+              - { name: title, label: Title, widget: string }
+              - { name: text, label: Text, widget: string }
+
+      # ---------------- CONTACT ----------------
+      - name: contact
+        label: "9. Contact Section"
+        file: src/data/contact.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - { name: subtitle, label: Subtitle, widget: text }
+          - { name: infoTitle, label: Info Card Title, widget: string }
+          - { name: promiseTitle, label: Promise Title, widget: string }
+          - { name: promiseText, label: Promise Text, widget: string }
+          - { name: formTitle, label: Form Title, widget: string }
+          - { name: buttonLabel, label: Send Button Text, widget: string }
+          - { name: successTitle, label: Success Title, widget: string }
+          - { name: successText, label: Success Text, widget: string }
+          - { name: errorText, label: Error Text, widget: string }
+
+      # ---------------- FAQ ----------------
+      - name: faq
+        label: "10. FAQ"
+        file: src/data/faq.json
+        fields:
+          - { name: title, label: Title, widget: string }
+          - name: items
+            label: Questions
+            widget: list
+            summary: "{{fields.question}}"
+            fields:
+              - { name: question, label: Question, widget: string }
+              - { name: answer, label: Answer, widget: text }

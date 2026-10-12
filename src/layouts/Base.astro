@@ -1,0 +1,156 @@
+---
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import settings from '../data/settings.json';
+import skills from '../data/skills.json';
+
+const {
+  noindex = false,
+  title = settings.seoTitle,
+  description = settings.seoDescription,
+  path = '/',
+  ogType = 'profile',
+  extraLd = null,
+} = Astro.props;
+const site = settings.siteUrl.replace(/\/$/, '');
+const home = site + '/';
+const canonical = site + path;
+const ogImage = settings.ogImage?.startsWith('http') ? settings.ogImage : site + settings.ogImage;
+const rawGtm = (settings.gtmId || '').trim().toUpperCase();
+const gtm = /^GTM-[A-Z0-9]+$/.test(rawGtm) ? rawGtm : '';
+const sameAs = [settings.linkedinUrl, settings.instagramUrl].filter((u) => u && !u.includes('your-profile'));
+const photo = settings.photo ? site + settings.photo : ogImage;
+const defaultTheme = ['dark', 'light', 'system'].includes(settings.defaultTheme) ? settings.defaultTheme : 'dark';
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': home + '#person',
+      name: settings.name,
+      jobTitle: settings.jobTitle,
+      url: home,
+      email: settings.email ? 'mailto:' + settings.email : undefined,
+      image: photo,
+      address: settings.location ? { '@type': 'PostalAddress', addressLocality: settings.location } : undefined,
+      sameAs,
+      knowsAbout: skills.categories.flatMap((c) => c.items.map((i) => i.name)),
+    },
+    {
+      '@type': 'WebSite',
+      '@id': home + '#website',
+      url: home,
+      name: settings.seoTitle,
+      about: { '@id': home + '#person' },
+    },
+    ...(extraLd ? [extraLd] : []),
+  ],
+};
+---
+<!doctype html>
+<html lang="en" data-theme={defaultTheme === 'light' ? 'light' : 'dark'}>
+  <head>
+    <meta charset="utf-8" />
+    <!-- Set day/night theme and first-visit loader before the page paints (no flash) -->
+    <script is:inline define:vars={{ defaultTheme }}>
+      (function () {
+        var d = document.documentElement, t;
+        try { t = localStorage.getItem('theme'); } catch (e) {}
+        if (t !== 'light' && t !== 'dark') {
+          t = defaultTheme === 'system'
+            ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+            : defaultTheme;
+        }
+        d.setAttribute('data-theme', t);
+        d.classList.add('js');
+        var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches, seen;
+        try { seen = sessionStorage.getItem('intro-seen'); } catch (e) {}
+        d.classList.add(!reduced && !seen ? 'is-loading' : 'is-ready');
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={settings.name} />
+    <meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large"} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#000000" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    {path === '/' && <link rel="preload" as="image" href="/character/scene.webp" type="image/webp" fetchpriority="high" />}
+
+    <!-- Open Graph (LinkedIn, WhatsApp, Facebook) -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={settings.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en_IN" />
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+
+    <!-- dataLayer must exist before GTM loads -->
+    <script is:inline>window.dataLayer = window.dataLayer || [];</script>
+    {gtm && (
+      <script is:inline set:html={`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtm}');`} />
+    )}
+  </head>
+  <body>
+    {gtm && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtm}`} height="0" width="0" style="display:none;visibility:hidden" title="GTM"></iframe></noscript>
+    )}
+    <!-- First-visit loader -->
+    <div class="loader" aria-hidden="true">
+      <div class="loader-mark"></div>
+      <div class="loader-count"><span data-loader-num>0</span><small>%</small></div>
+      <div class="loader-name">{settings.brand}</div>
+      <div class="loader-bar"></div>
+    </div>
+
+    <!-- 3D world: one fixed scene behind every section -->
+    <canvas class="world" aria-hidden="true"></canvas>
+
+    <slot />
+
+    <script>
+      import '../scripts/effects.js';
+    </script>
+
+    <script is:inline>
+      /* ===== Event tracking (pushes to GTM dataLayer) =====
+         Events: cta_click, cv_download, outbound_click, case_study_view, form_submit */
+      (function () {
+        var dl = (window.dataLayer = window.dataLayer || []);
+        function track(event, params) { dl.push(Object.assign({ event: event }, params || {})); }
+        window.trackEvent = track;
+        document.addEventListener('click', function (e) {
+          var el = e.target.closest('a, button');
+          if (!el) return;
+          var text = (el.getAttribute('data-label') || el.textContent || '').trim().replace(/\s+/g, ' ');
+          var where = el.getAttribute('data-location') || (el.closest('section, nav, footer') || {}).id || 'page';
+          if (el.hasAttribute('data-cv')) {
+            track('cv_download', { cta_text: text, cta_location: where, file_url: el.href });
+            return;
+          }
+          if (el.hasAttribute('data-cta')) track('cta_click', { cta_text: text, cta_location: where });
+          if (el.tagName === 'A') {
+            var href = el.getAttribute('href') || '';
+            var type = href.indexOf('mailto:') === 0 ? 'email' : href.indexOf('tel:') === 0 ? 'phone'
+              : /linkedin\.com/.test(href) ? 'linkedin' : /instagram\.com/.test(href) ? 'instagram' : (el.host && el.host !== location.host) ? 'external' : '';
+            if (type) track('outbound_click', { link_type: type, link_url: href, link_text: text, cta_location: where });
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

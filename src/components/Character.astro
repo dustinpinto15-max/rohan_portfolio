@@ -1,0 +1,26 @@
+---
+// The hero character. His head and eyes follow the mouse circle.
+// When the mouse stops, he looks back at his laptop and types.
+//
+// The <img> is the still picture (shown first, and kept for "reduce motion"
+// and old browsers). The <canvas> is the live version, drawn with WebGL.
+// The motion is in src/scripts/character3d.js.
+const { bubbles = [], name = '' } = Astro.props;
+---
+<div class="char" data-char role="img" aria-label={`3D illustration of ${name} working at a desk`}>
+  <div class="char-glow" aria-hidden="true"></div>
+
+  <div class="char-stage" aria-hidden="true">
+    <img class="char-still" src="/character/scene.webp" alt="" width="1850" height="1510" fetchpriority="high" decoding="async" />
+    <canvas class="char-canvas" data-char-canvas></canvas>
+
+    <!-- The 3D growth chart floats here, above the laptop (see data-anchor on the hero) -->
+    <div class="char-anchor" id="hero-object"></div>
+  </div>
+
+  {bubbles.length > 0 && (
+    <button class="char-bubble" type="button" data-bubble data-lines={JSON.stringify(bubbles)} aria-label="Show another message">
+      <span data-bubble-text>{bubbles[0]}</span>
+    </button>
+  )}
+</div>

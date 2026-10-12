@@ -1,0 +1,9 @@
+{
+  "title": "What I Bring to Your Team",
+  "items": [
+    { "icon": "dollar", "title": "ROI Focused", "text": "Every campaign is measured against clear business goals" },
+    { "icon": "chart", "title": "Data-Driven", "text": "Decisions backed by clean tracking and regular testing" },
+    { "icon": "users", "title": "Customer Centric", "text": "A clear view of the customer journey and what moves people" },
+    { "icon": "trending", "title": "Growth Minded", "text": "Focused on strategies that scale over the long term" }
+  ]
+}

@@ -1,0 +1,131 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Icon from '../../components/Icon.astro';
+import Snapshot from '../../components/Snapshot.astro';
+import cs from '../../data/case-studies.json';
+import settings from '../../data/settings.json';
+
+export function getStaticPaths() {
+  return cs.items.map((item, i) => ({
+    params: { slug: item.slug },
+    props: { item, prev: cs.items[i - 1] || null, next: cs.items[i + 1] || null },
+  }));
+}
+
+const { item, prev, next } = Astro.props;
+const site = settings.siteUrl.replace(/\/$/, '');
+const path = `/case-studies/${item.slug}/`;
+const articleLd = {
+  '@type': 'Article',
+  '@id': site + path + '#article',
+  headline: item.title,
+  description: item.summary,
+  url: site + path,
+  author: { '@id': site + '/#person' },
+  publisher: { '@id': site + '/#person' },
+  about: item.industry,
+  keywords: [...item.strategies, ...item.tools].join(', '),
+  image: site + settings.ogImage,
+};
+---
+<Base title={`${item.title} | ${settings.name} Case Study`} description={item.summary} path={path} ogType="article" extraLd={articleLd}>
+  <Nav />
+  <main class="cs-page" data-case-study={item.title}>
+    <section class="cs-hero section-grad" data-shape="target" data-side="right" data-scale=".85" data-opacity=".8">
+      <div class="container">
+        <nav class="crumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a><span aria-hidden="true">/</span><a href="/case-studies/">Case Studies</a>
+        </nav>
+        <span class="eyebrow"><span class="dot"></span>{item.industry}</span>
+        <h1 class="cs-page-title grad-white">{item.title}</h1>
+        <p class="cs-page-summary">{item.summary}</p>
+        <div class="cs-meta">
+          <span class="tag"><Icon name="users" size={14} />{item.client}</span>
+          <span class="tag"><Icon name="clock" size={14} />{item.duration}</span>
+          <span class="tag"><Icon name="award" size={14} />{item.role}</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container cs-body" data-shape="chart" data-side="left" data-scale=".9" data-opacity=".35">
+      <Snapshot item={item} size="lg" />
+
+      <section aria-labelledby="results-h">
+        <h2 id="results-h" class="cs-sub-title grad-red-2">Results That Matter</h2>
+        <div class="results">
+          {item.results.map((r) => (
+            <div class="result card-glass">
+              <div class="result-value grad-red-2">{r.value}</div>
+              <div class="result-text">{r.text}</div>
+              <div class="result-label">{r.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <div class="cs-two cs-block">
+        <div class="cs-box card-glass"><h2 class="cs-h4">The Challenge</h2><p>{item.challenge}</p></div>
+        <div class="cs-box card-glass"><h2 class="cs-h4">The Solution</h2><p>{item.solution}</p></div>
+      </div>
+
+      {item.approach?.length > 0 && (
+        <section class="cs-block" aria-labelledby="approach-h">
+          <h2 id="approach-h" class="cs-sub-title">How I Did It</h2>
+          <ol class="steps">
+            {item.approach.map((step, i) => (
+              <li class="step card-glass">
+                <span class="step-num" aria-hidden="true">{i + 1}</span>
+                <div><h3>{step.title}</h3><p>{step.text}</p></div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      <div class="cs-lists cs-block card-glass cs-pad">
+        <div>
+          <h4>Strategies Used</h4>
+          <ul class="dot-list">{item.strategies.map((s) => <li>{s}</li>)}</ul>
+        </div>
+        <div>
+          <h4>Tools & Platforms</h4>
+          <div class="tags">{item.tools.map((t) => <span class="tag">{t}</span>)}</div>
+        </div>
+      </div>
+
+      {item.learnings?.length > 0 && (
+        <section class="cs-block learnings" aria-labelledby="learn-h">
+          <h2 id="learn-h" class="cs-sub-title">Key Learnings</h2>
+          <ul class="side-list">
+            {item.learnings.map((l) => <li><span class="side-dot"></span><span>{l}</span></li>)}
+          </ul>
+        </section>
+      )}
+
+      <section class="values cs-cta-box">
+        <h3>Want results like these for your brand?</h3>
+        <p>I am open to Digital Marketing Manager and Performance Marketing roles. Let's talk.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href={settings.cvFile} download data-cv data-magnet data-location="case-study-page">Download CV<Icon name="download" size={16} /></a>
+          <a class="btn btn-outline" href="/#contact" data-cta data-magnet data-location="case-study-page" data-label={`Contact: ${item.title}`}>Get in Touch<Icon name="arrow" size={16} /></a>
+        </div>
+      </section>
+
+      <nav class="cs-pager" aria-label="More case studies">
+        {prev ? <a class="cs-tab" data-cursor="Prev" href={`/case-studies/${prev.slug}/`}><span class="cs-tab-client">Previous</span><span class="cs-tab-title">{prev.title}</span></a> : <span></span>}
+        {next ? <a class="cs-tab cs-next" data-cursor="Next" href={`/case-studies/${next.slug}/`}><span class="cs-tab-client">Next</span><span class="cs-tab-title">{next.title}</span></a> : <span></span>}
+      </nav>
+    </div>
+  </main>
+  <Footer />
+
+  <script is:inline>
+    (function () {
+      var m = document.querySelector('[data-case-study]');
+      window.dataLayer = window.dataLayer || [];
+      if (m) window.dataLayer.push({ event: 'case_study_view', case_study_title: m.getAttribute('data-case-study'), view_type: 'full_page' });
+    })();
+  </script>
+</Base>

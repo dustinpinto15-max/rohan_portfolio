@@ -1,0 +1,20 @@
+---
+// Big number panel used when a case study has no image.
+import Icon from './Icon.astro';
+const { item, size = 'md' } = Astro.props;
+---
+<div class={`cs-media cs-snapshot cs-snapshot-${size}`}>
+  {item.image ? (
+    <img src={item.image} alt={item.imageCaption || item.title} loading="lazy" decoding="async" width="1200" height="412" />
+  ) : (
+    <div class="snap-inner">
+      <div class="snap-value grad-red">{item.headlineValue}</div>
+      <div class="snap-label">{item.headlineLabel}</div>
+      <div class="snap-tools">
+        {item.tools.slice(0, 4).map((t) => <span class="tag">{t}</span>)}
+      </div>
+      <span class="snap-icon" aria-hidden="true"><Icon name="trending" size={120} /></span>
+    </div>
+  )}
+  {item.image && item.imageCaption && <div class="cs-caption">{item.imageCaption}</div>}
+</div>

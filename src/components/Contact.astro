@@ -1,0 +1,126 @@
+---
+import Icon from './Icon.astro';
+import c from '../data/contact.json';
+import faq from '../data/faq.json';
+import settings from '../data/settings.json';
+import { rich } from '../lib/rich.js';
+const tel = (settings.phone || '').replace(/[^\d+]/g, '');
+---
+<section id="contact" class="contact" data-shape="plane" data-side="left" data-scale=".8" data-opacity=".9">
+  <div class="container">
+    <header class="section-head">
+      <div class="shape-spot" data-shape-spot aria-hidden="true"></div>
+      <h2 class="h2-big" style="font-weight:400">{c.title}</h2>
+      <p class="section-sub" data-fade set:html={rich(c.subtitle)} />
+    </header>
+
+    <div class="contact-grid">
+      <div class="contact-side">
+        <div class="info-card card-mid">
+          <h3><Icon name="message" size={18} />{c.infoTitle}</h3>
+          {settings.email && (
+            <div class="info-row"><Icon name="mail" size={16} />
+              <div><div class="info-label">Email</div><a class="info-value" href={`mailto:${settings.email}`}>{settings.email}</a></div></div>
+          )}
+          {settings.phone && (
+            <div class="info-row"><Icon name="phone" size={16} />
+              <div><div class="info-label">Phone</div><a class="info-value" href={`tel:${tel}`}>{settings.phone}</a></div></div>
+          )}
+          {settings.linkedinUrl && (
+            <div class="info-row"><Icon name="linkedin" size={16} />
+              <div><div class="info-label">LinkedIn</div><a class="info-value" href={settings.linkedinUrl} target="_blank" rel="noopener">View profile</a></div></div>
+          )}
+          {settings.instagramUrl && (
+            <div class="info-row"><Icon name="instagram" size={16} />
+              <div><div class="info-label">Instagram</div><a class="info-value" href={settings.instagramUrl} target="_blank" rel="noopener">Follow</a></div></div>
+          )}
+          {settings.location && (
+            <div class="info-row"><Icon name="pin" size={16} />
+              <div><div class="info-label">Location</div><div class="info-value">{settings.location}</div></div></div>
+          )}
+        </div>
+        <div class="promise">
+          <h3>{c.promiseTitle}</h3>
+          <p>{c.promiseText}</p>
+        </div>
+        <a class="btn btn-outline side-cv" href={settings.cvFile} download data-cv data-magnet data-location="contact">
+          Download CV<Icon name="download" size={16} />
+        </a>
+      </div>
+
+      <div class="form-card card-mid">
+        <h3>{c.formTitle}</h3>
+        <!-- Web3Forms: messages go to the email linked to your access key -->
+        <form method="POST" action="https://api.web3forms.com/submit" id="contact-form">
+          <input type="hidden" name="access_key" value={settings.web3formsKey} />
+          <input type="hidden" name="subject" value={`New portfolio message for ${settings.name}`} />
+          <input type="hidden" name="from_name" value={`${settings.name} Portfolio`} />
+          <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <div class="form-grid">
+            <div class="field"><label for="f-name">Name *</label><input id="f-name" name="name" required autocomplete="name" placeholder="Your full name" /></div>
+            <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" required autocomplete="email" placeholder="you@company.com" /></div>
+            <div class="field"><label for="f-company">Company</label><input id="f-company" name="company" autocomplete="organization" placeholder="Company name" /></div>
+            <div class="field"><label for="f-need">What do you need?</label>
+              <select id="f-need" name="need">
+                <option value="Hiring for a role">I am hiring for a role</option>
+                <option value="Freelance project">I need freelance help</option>
+                <option value="Something else">Something else</option>
+              </select></div>
+            <div class="field field-full"><label for="f-msg">Message *</label><textarea id="f-msg" name="message" required placeholder="Tell me about the role or the project, and your goal..."></textarea></div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-solid" id="f-submit">{c.buttonLabel}<Icon name="send" size={14} /></button>
+          </div>
+          <div class="form-status" id="f-status" role="status" aria-live="polite" hidden></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="faq">
+      <h3>{faq.title}</h3>
+      <div class="faq-grid">
+        {faq.items.map((f) => (
+          <div class="faq-item card-mid"><h4>{f.question}</h4><p>{f.answer}</p></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ okTitle: c.successTitle, okText: c.successText, errText: c.errorText, hasKey: !!settings.web3formsKey, email: settings.email }}>
+  (function () {
+    var form = document.getElementById('contact-form');
+    var btn = document.getElementById('f-submit');
+    var status = document.getElementById('f-status');
+    function show(kind, msg) { status.hidden = false; status.className = 'form-status ' + kind; status.textContent = msg; }
+    // Buttons like "Tell me about your project" pick the right option in the form
+    var need = document.getElementById('f-need'), msg = document.getElementById('f-msg');
+    var hints = { hiring: 'Tell me about the role, the team and next steps...', freelance: 'Tell me about your business, your ad spend and your goal...' };
+    function setNeed(kind) {
+      if (kind === 'hiring') need.selectedIndex = 0; else if (kind === 'freelance') need.selectedIndex = 1; else return;
+      msg.placeholder = hints[kind];
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('[data-intent]'); if (a) setNeed(a.getAttribute('data-intent'));
+    });
+    need.addEventListener('change', function () { setNeed(need.selectedIndex === 0 ? 'hiring' : need.selectedIndex === 1 ? 'freelance' : ''); });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!hasKey) { show('err', 'The form is not connected yet. Please email me at ' + email + '.'); return; }
+      btn.disabled = true;
+      var data = new FormData(form);
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: data,
+      }).then(function (r) { return r.json().then(function (j) { if (!r.ok || !j.success) throw new Error(j.message || r.status); }); })
+      .then(function () {
+        if (window.trackEvent) window.trackEvent('form_submit', { form_name: 'contact', hiring_company: data.get('company') || '', enquiry_type: data.get('need') || '' });
+        form.reset();
+        show('ok', okTitle + '. ' + okText);
+      }).catch(function () {
+        show('err', errText);
+      }).finally(function () { btn.disabled = false; });
+    });
+  })();
+</script>

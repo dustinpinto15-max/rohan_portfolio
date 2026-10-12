@@ -1,0 +1,38 @@
+{
+  "eyebrow": "How I can help",
+  "title": "Two ways we can work together",
+  "subtitle": "Pick the one that fits you. Both start with a short call.",
+  "cards": [
+    {
+      "tag": "For hiring teams",
+      "icon": "users",
+      "title": "Hire me as your performance marketing lead",
+      "text": "I own your paid channels end to end: strategy, budgets, tracking, reporting and the team.",
+      "points": [
+        "Managed a ₹50L+ monthly ad budget across search, shopping and social",
+        "Lead and mentor the marketing team at Unstitched",
+        "Open to roles in Mumbai or remote"
+      ],
+      "primaryLabel": "Download my CV",
+      "primaryAction": "cv",
+      "secondaryLabel": "Talk about a role",
+      "intent": "hiring"
+    },
+    {
+      "tag": "For founders and brands",
+      "icon": "trending",
+      "title": "Bring me in as your freelance growth partner",
+      "text": "For one project or ongoing work. I find what holds your ads back, fix it and scale what works.",
+      "points": [
+        "Paid ads setup and scaling on Google, Meta, Amazon and more",
+        "Tracking and attribution you can trust (GA4, Tag Manager, server-side)",
+        "Lead follow-up and reporting on autopilot with n8n and your CRM"
+      ],
+      "primaryLabel": "Tell me about your project",
+      "primaryAction": "contact",
+      "secondaryLabel": "See results first",
+      "secondaryHref": "/#case-studies",
+      "intent": "freelance"
+    }
+  ]
+}

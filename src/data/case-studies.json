@@ -1,0 +1,470 @@
+{
+  "eyebrow": "Proof",
+  "title": "Results you can check",
+  "subtitle": "Real campaigns, real numbers. See [[what was broken, what I changed and what it earned]].",
+  "buttonLabel": "Discuss This Project",
+  "readMoreLabel": "Read Full Case Study",
+  "items": [
+    {
+      "slug": "d2c-brand-15x-roas",
+      "title": "Scaling a D2C Brand to 15.46x ROAS",
+      "client": "Leading D2C Consumer Brand",
+      "industry": "D2C & E-commerce",
+      "duration": "6 months",
+      "role": "Performance marketing lead",
+      "summary": "How I moved budget to high-intent audiences, rebuilt the creative testing plan and pushed a D2C brand's return on ad spend to 15.46x.",
+      "headlineValue": "15.46x",
+      "headlineLabel": "Peak return on ad spend",
+      "image": "",
+      "imageCaption": "",
+      "challenge": "The brand was spending more every month, but returns were flat. Budget was spread thin across broad audiences. Retargeting and search were underfunded, and creatives were not being tested in a structured way. The founders wanted growth without wasting spend.",
+      "solution": "I rebuilt the account around buying intent. High-intent campaigns got the budget first. Broad prospecting was kept only where it paid back. A weekly creative testing plan found new winning ads fast.",
+      "approach": [
+        {
+          "title": "Audit and baseline",
+          "text": "Reviewed 90 days of Meta and Google data by campaign, audience and creative. Found the spend that brought no sales and cut it."
+        },
+        {
+          "title": "Rebuild by intent",
+          "text": "Split the account into three layers: brand and category search, retargeting of site visitors and cart abandoners, and broad prospecting. Each layer got its own ROAS target."
+        },
+        {
+          "title": "Creative testing plan",
+          "text": "Launched 3 to 5 new ad concepts every week. Tested hooks, offers and formats. Moved spend to winners within 7 days."
+        },
+        {
+          "title": "Catalogue and shopping ads",
+          "text": "Set up dynamic product ads on Meta and Shopping campaigns on Google, so every product could be shown to the right buyer."
+        },
+        {
+          "title": "Scale with guardrails",
+          "text": "Raised budgets by about 20% at a time only when ROAS held for 5 days. Cut campaigns early when they dropped below target."
+        }
+      ],
+      "results": [
+        {
+          "value": "15.46x",
+          "text": "peak return on ad spend",
+          "label": "ROAS"
+        },
+        {
+          "value": "2.1x",
+          "text": "more revenue from paid channels",
+          "label": "Revenue"
+        },
+        {
+          "value": "32%",
+          "text": "lower cost per purchase",
+          "label": "CPA"
+        },
+        {
+          "value": "45%",
+          "text": "higher CTR on new creatives",
+          "label": "CTR"
+        }
+      ],
+      "strategies": [
+        "Intent-based account structure",
+        "Retargeting and cart recovery",
+        "Weekly creative testing",
+        "Dynamic product and Shopping ads",
+        "Budget scaling rules"
+      ],
+      "tools": [
+        "Meta Ads",
+        "Google Ads",
+        "GA4",
+        "Tag Manager",
+        "Looker Studio"
+      ],
+      "learnings": [
+        "High ROAS comes from putting budget where buying intent already exists, then feeding that pool with prospecting.",
+        "A fixed weekly testing rhythm beats one big creative launch.",
+        "Scaling in small steps protects results. Big budget jumps reset learning and raise costs."
+      ]
+    },
+    {
+      "slug": "full-funnel-tracking-attribution",
+      "title": "Full-Funnel Tracking That Fixed 60% of Attribution Gaps",
+      "client": "Multi-Brand Client Portfolio",
+      "industry": "Lead Generation & D2C",
+      "duration": "4 months",
+      "role": "Digital Marketing Manager, Unstitched",
+      "summary": "I connected GTM, GA4 and the CRM into one funnel view. Then I used regression analysis to find what really drove sales. The result was 30% higher sales at 15% lower CPA.",
+      "headlineValue": "30%",
+      "headlineLabel": "Higher sales at 15% lower CPA",
+      "image": "",
+      "imageCaption": "",
+      "challenge": "Ad platforms, GA4 and the CRM all showed different numbers. Many leads had no source, so the team could not tell which campaigns created paying customers. Budget decisions were based on clicks and leads, not on revenue.",
+      "solution": "I built one end-to-end funnel. Every step was tracked, from the ad click to the lead in the CRM to the closed sale. Then I used regression analysis on creative, audience and timing to find what actually drove sales, and restructured the ad strategy around it.",
+      "approach": [
+        {
+          "title": "Tracking audit",
+          "text": "Mapped every form, button and thank-you page. Listed where leads lost their source data."
+        },
+        {
+          "title": "Event plan in GTM and GA4",
+          "text": "Set up clean GA4 events for key steps: form start, lead, qualified lead and sale. Added UTM rules for every campaign."
+        },
+        {
+          "title": "CRM connection",
+          "text": "Passed source, campaign and click IDs into the CRM with each lead. Sent qualified leads and sales back to Meta and Google as offline conversions."
+        },
+        {
+          "title": "Regression analysis",
+          "text": "Tested which variables drove sales: creative type, audience, day and time. Found the few factors that mattered most."
+        },
+        {
+          "title": "Restructure and reallocate",
+          "text": "Moved budget to the winning creative, audience and timing mix. Paused what brought leads that never converted."
+        }
+      ],
+      "results": [
+        {
+          "value": "25%",
+          "text": "higher lead-to-customer conversion",
+          "label": "Conversion"
+        },
+        {
+          "value": "60%",
+          "text": "of attribution gaps fixed",
+          "label": "Attribution"
+        },
+        {
+          "value": "30%",
+          "text": "higher sales from paid media",
+          "label": "Sales"
+        },
+        {
+          "value": "15%",
+          "text": "lower cost per acquisition",
+          "label": "CPA"
+        }
+      ],
+      "strategies": [
+        "GA4 event architecture",
+        "UTM and naming rules",
+        "CRM source tracking",
+        "Offline conversion import",
+        "Regression-based budget decisions"
+      ],
+      "tools": [
+        "Google Tag Manager",
+        "GA4",
+        "CRM",
+        "Meta Ads",
+        "Google Ads",
+        "Looker Studio"
+      ],
+      "learnings": [
+        "You cannot optimise what you cannot track. Fixing attribution came before any budget change.",
+        "Sending real sales data back to ad platforms helps their algorithms find better buyers.",
+        "Regression analysis cuts through opinions and shows which levers really move sales."
+      ]
+    },
+    {
+      "slug": "50l-monthly-budget-search-shopping-social",
+      "title": "Managing a ₹50L+ Monthly Ad Budget Across Search, Shopping and Social",
+      "client": "E-commerce & Consumer Brands",
+      "industry": "E-commerce",
+      "duration": "18 months",
+      "role": "Performance Marketing Specialist, Cryptic Intel",
+      "summary": "I managed ₹50L+ a month in ad spend, kept CPA 14% below the industry average, and cut cart abandonment by 12% with SMS and email remarketing.",
+      "headlineValue": "₹50L+",
+      "headlineLabel": "Monthly ad budget managed",
+      "image": "",
+      "imageCaption": "",
+      "challenge": "Large budgets across search, shopping and social made waste easy to miss. Many shoppers added products to cart but did not buy. Stakeholders also received reports that did not match each other, which slowed down decisions.",
+      "solution": "I set clear CPA targets per platform and per campaign type, and reviewed spend every day. I added an SMS and email remarketing flow with personalised offers for cart abandoners. I also built one reporting dashboard that everyone trusted.",
+      "approach": [
+        {
+          "title": "Targets per platform",
+          "text": "Set CPA and ROAS targets for search, shopping and social campaigns based on margins and industry benchmarks."
+        },
+        {
+          "title": "Daily spend control",
+          "text": "Checked pacing and CPA every day. Moved budget between channels weekly based on results."
+        },
+        {
+          "title": "Cart recovery flow",
+          "text": "Built SMS and email reminders at 1 hour, 24 hours and 72 hours after cart abandonment. High-intent users got a personalised discount."
+        },
+        {
+          "title": "One source of truth",
+          "text": "Built Google Data Studio dashboards that pulled all platforms into one view with the same metric definitions."
+        },
+        {
+          "title": "Client growth",
+          "text": "Held regular reviews with clients using the dashboards. Strong results led to a referral that grew the portfolio."
+        }
+      ],
+      "results": [
+        {
+          "value": "14%",
+          "text": "lower CPA than the industry average",
+          "label": "CPA"
+        },
+        {
+          "value": "12%",
+          "text": "less cart abandonment",
+          "label": "Cart recovery"
+        },
+        {
+          "value": "95%",
+          "text": "reporting accuracy",
+          "label": "Reporting"
+        },
+        {
+          "value": "10%",
+          "text": "portfolio growth from a client referral",
+          "label": "Account growth"
+        }
+      ],
+      "strategies": [
+        "Platform-level CPA targets",
+        "Daily pacing reviews",
+        "SMS and email cart recovery",
+        "Personalised discount offers",
+        "Unified reporting dashboard"
+      ],
+      "tools": [
+        "Google Ads",
+        "Google Shopping",
+        "Meta Ads",
+        "Google Data Studio",
+        "SMS Marketing",
+        "Email Marketing"
+      ],
+      "learnings": [
+        "At big budgets, small daily checks prevent large losses.",
+        "Cart recovery is often the cheapest revenue in the account.",
+        "Trusted reporting makes decisions faster and keeps clients longer."
+      ]
+    },
+    {
+      "slug": "linkedin-automation-b2b-leads",
+      "title": "LinkedIn Automation for B2B Lead Generation",
+      "client": "B2B Services Company",
+      "industry": "B2B Services",
+      "duration": "3 months",
+      "role": "Digital marketing lead",
+      "summary": "I built a new LinkedIn marketing automation with CRM syncs and n8n workflows. It raised conversion efficiency by 17% and cut manual work by 40%.",
+      "headlineValue": "17%",
+      "headlineLabel": "Higher conversion efficiency",
+      "image": "",
+      "imageCaption": "",
+      "challenge": "The sales team was spending hours copying LinkedIn leads into the CRM by hand. Follow-ups were slow, and many good leads went cold before anyone called them.",
+      "solution": "I found and set up a LinkedIn marketing automation. Leads from LinkedIn ads and forms now flow straight into the CRM, get a score, and start an email sequence right away. Hot leads go to sales within minutes.",
+      "approach": [
+        {
+          "title": "Map the lead journey",
+          "text": "Listed every step from a LinkedIn click to a sales call. Found where leads waited or got lost."
+        },
+        {
+          "title": "Automate lead capture",
+          "text": "Connected LinkedIn Lead Gen Forms to the CRM so every lead arrives with its campaign and ad data."
+        },
+        {
+          "title": "Score and route",
+          "text": "Built n8n workflows that score leads on job title, company size and actions, then send hot leads to sales."
+        },
+        {
+          "title": "Nurture sequences",
+          "text": "Set up email drips for leads that were not ready to buy, with content matched to their role."
+        },
+        {
+          "title": "Review and refine",
+          "text": "Checked lead quality with the sales team every two weeks and tuned the scoring rules."
+        }
+      ],
+      "results": [
+        {
+          "value": "17%",
+          "text": "higher conversion efficiency",
+          "label": "Conversion"
+        },
+        {
+          "value": "40%",
+          "text": "fewer manual tasks for the team",
+          "label": "Time saved"
+        },
+        {
+          "value": "<10 min",
+          "text": "from new lead to sales alert",
+          "label": "Speed to lead"
+        },
+        {
+          "value": "22%",
+          "text": "lower cost per qualified lead",
+          "label": "Cost per lead"
+        }
+      ],
+      "strategies": [
+        "LinkedIn Lead Gen Forms",
+        "Automated CRM sync",
+        "Lead scoring",
+        "Role-based email nurture",
+        "Sales feedback loop"
+      ],
+      "tools": [
+        "LinkedIn Ads",
+        "n8n",
+        "HubSpot",
+        "Zoho CRM",
+        "LeadSquared"
+      ],
+      "learnings": [
+        "Speed to lead matters as much as lead volume.",
+        "Automation works best when sales helps define what a good lead looks like.",
+        "Removing manual steps frees the team to spend time on conversations, not data entry."
+      ]
+    },
+    {
+      "slug": "performance-led-pitches-new-clients",
+      "title": "Performance-Led Pitches That Won ₹60L+ in New Business",
+      "client": "Agency New Business",
+      "industry": "Agency Growth",
+      "duration": "Ongoing",
+      "role": "Digital Marketing Manager, Unstitched",
+      "summary": "I partnered with the sales team to build pitches based on performance data and clear growth plans. We won 3 new clients worth ₹60L+ in annual revenue.",
+      "headlineValue": "₹60L+",
+      "headlineLabel": "New annual revenue won",
+      "image": "",
+      "imageCaption": "",
+      "challenge": "Pitches focused on creative work but did not show prospects how marketing would grow their revenue. Prospects found it hard to compare us with other agencies.",
+      "solution": "I added a performance section to every pitch. It included a quick audit of the prospect's current ads, a 90-day growth plan with clear targets, and proof from similar past results.",
+      "approach": [
+        {
+          "title": "Pre-pitch audit",
+          "text": "Reviewed the prospect's ads, website and tracking before the meeting. Listed quick wins and gaps."
+        },
+        {
+          "title": "90-day growth plan",
+          "text": "Showed a simple plan: what we would fix in month 1, test in month 2, and scale in month 3."
+        },
+        {
+          "title": "Proof from past work",
+          "text": "Shared results from similar brands, such as ROAS, CPA and conversion gains."
+        },
+        {
+          "title": "Clear targets",
+          "text": "Agreed on the metrics that would define success, so the client knew what to expect."
+        }
+      ],
+      "results": [
+        {
+          "value": "3",
+          "text": "new clients won",
+          "label": "New clients"
+        },
+        {
+          "value": "₹60L+",
+          "text": "in annual revenue",
+          "label": "Revenue"
+        },
+        {
+          "value": "60%",
+          "text": "pitch win rate",
+          "label": "Win rate"
+        },
+        {
+          "value": "90 days",
+          "text": "growth plan in every pitch",
+          "label": "Plan"
+        }
+      ],
+      "strategies": [
+        "Pre-pitch account audits",
+        "90-day growth roadmaps",
+        "Proof-based case examples",
+        "Shared success metrics"
+      ],
+      "tools": [
+        "Meta Ads",
+        "Google Ads",
+        "GA4",
+        "Looker Studio",
+        "PowerPoint"
+      ],
+      "learnings": [
+        "Prospects buy outcomes, not services. Showing a clear path to revenue wins trust.",
+        "A short audit before the pitch shows effort and expertise at the same time.",
+        "Agreeing on success metrics early makes the client relationship smoother later."
+      ]
+    },
+    {
+      "slug": "direct-response-copy-email-automation",
+      "title": "Direct-Response Copy and Email Automation That Beat Benchmarks",
+      "client": "Growing Digital Business",
+      "industry": "Technology",
+      "duration": "12 months",
+      "role": "Digital Marketing Executive, OrgGen Technologies",
+      "summary": "I wrote and tested direct-response ads for Meta and Google, and helped build email automation. CTR ended 17% above benchmark and the open rate 12% above the industry average.",
+      "headlineValue": "17%",
+      "headlineLabel": "Higher CTR than benchmarks",
+      "image": "",
+      "imageCaption": "",
+      "challenge": "Ads used generic copy and got low click-through rates. Emails were sent in one-off blasts with no automation, so open rates were below the industry average.",
+      "solution": "I wrote direct-response copy with clear hooks, benefits and calls to action, and tested variations on Meta and Google. I also helped set up automated email flows based on user actions.",
+      "approach": [
+        {
+          "title": "Research the buyer",
+          "text": "Used keyword research and customer questions to learn the words buyers use."
+        },
+        {
+          "title": "Write and test ad copy",
+          "text": "Wrote several versions of each ad, with different hooks and offers. Kept the winners and replaced the rest."
+        },
+        {
+          "title": "Automate emails",
+          "text": "Set up welcome, follow-up and re-engagement emails that were triggered by user actions."
+        },
+        {
+          "title": "Improve subject lines",
+          "text": "A/B tested subject lines and send times to lift opens."
+        }
+      ],
+      "results": [
+        {
+          "value": "17%",
+          "text": "higher CTR than benchmarks",
+          "label": "Ad CTR"
+        },
+        {
+          "value": "12%",
+          "text": "open rate above industry average",
+          "label": "Email opens"
+        },
+        {
+          "value": "3",
+          "text": "automated email flows launched",
+          "label": "Automation"
+        },
+        {
+          "value": "25%",
+          "text": "more organic sessions from SEO content",
+          "label": "Organic traffic"
+        }
+      ],
+      "strategies": [
+        "Direct-response copywriting",
+        "Ad copy A/B testing",
+        "Behaviour-based email flows",
+        "Subject line testing",
+        "Keyword-led content"
+      ],
+      "tools": [
+        "Meta Ads",
+        "Google Ads",
+        "Email Automation",
+        "Google Keyword Planner",
+        "SEMrush"
+      ],
+      "learnings": [
+        "Copy written in the buyer's own words wins more clicks.",
+        "Automated emails sent at the right moment beat bulk blasts.",
+        "Small, steady tests add up to large gains over a year."
+      ]
+    }
+  ]
+}

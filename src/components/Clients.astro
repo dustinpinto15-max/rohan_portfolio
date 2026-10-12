@@ -1,0 +1,44 @@
+---
+import clients from '../data/clients.json';
+import { rich } from '../lib/rich.js';
+
+// Two rows that scroll in opposite directions. Each row is repeated so the loop has no gap.
+const items = clients.items;
+const rowA = items;
+const rowB = [...items].reverse();
+---
+<section id="clients" class="clients" data-shape="megaphone" data-side="right" data-scale=".8" data-opacity=".5">
+  <div class="container">
+    <header class="section-head">
+      <div class="shape-spot" data-shape-spot aria-hidden="true"></div>
+      <span class="eyebrow" data-fade><span class="dot"></span>{clients.eyebrow}</span>
+      <h2 class="h2-plain">{clients.title}</h2>
+      <p class="section-sub" data-fade set:html={rich(clients.subtitle)} />
+    </header>
+  </div>
+
+  <!-- Readable list for screen readers and search engines -->
+  <ul class="sr-only">
+    {items.map((c) => <li>{c.name}{c.category ? `, ${c.category}` : ''}</li>)}
+  </ul>
+
+  <div class="marquee" aria-hidden="true">
+    {[rowA, rowB].map((row, r) => (
+      <div class={`marquee-row ${r === 1 ? 'is-reverse' : ''}`}>
+        <div class="marquee-track">
+          {[0, 1].map(() => row.map((c) => (
+            <div class="logo-tile">
+              <div class="logo-face">
+                {c.logo
+                  ? <img class="logo-white" src={c.logo} alt="" loading="lazy" decoding="async" height="56" />
+                  : <span class="client-name">{c.name}</span>}
+                {c.logoColor && <img class="logo-color" src={c.logoColor} alt="" loading="lazy" decoding="async" height="56" />}
+              </div>
+              {c.category && <span class="logo-cat">{c.category}</span>}
+            </div>
+          )))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

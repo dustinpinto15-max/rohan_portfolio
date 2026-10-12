@@ -1,0 +1,105 @@
+---
+import Icon from './Icon.astro';
+import Snapshot from './Snapshot.astro';
+import cs from '../data/case-studies.json';
+import { rich } from '../lib/rich.js';
+---
+<section id="case-studies" class="section section-grad" data-shape="target" data-side="left" data-scale=".85" data-opacity=".5">
+  <div class="container">
+    <header class="section-head">
+      <div class="shape-spot" data-shape-spot aria-hidden="true"></div>
+      <span class="eyebrow" data-fade><span class="dot"></span>{cs.eyebrow}</span>
+      <h2 class="h2-big grad-white">{cs.title}</h2>
+      <p class="section-sub" data-fade set:html={rich(cs.subtitle)} />
+    </header>
+
+    <div class="cs-grid">
+      <div class="cs-tabs" role="tablist" aria-label="Case studies">
+        {cs.items.map((item, i) => (
+          <button class="cs-tab" role="tab" id={`cs-tab-${i}`} aria-controls={`cs-panel-${i}`}
+            aria-selected={i === 0 ? 'true' : 'false'} tabindex={i === 0 ? 0 : -1} data-title={item.title}>
+            <span class="cs-tab-title">{item.title}</span>
+            <span class="cs-tab-client">{item.client}</span>
+            <span class="cs-tab-ind">{item.industry}</span>
+          </button>
+        ))}
+      </div>
+
+      <div>
+        {cs.items.map((item, i) => (
+          <article class="cs-panel card-glass" role="tabpanel" id={`cs-panel-${i}`} aria-labelledby={`cs-tab-${i}`} hidden={i !== 0}>
+            <h3>{item.title}</h3>
+            <div class="cs-meta">
+              <span class="tag"><Icon name="users" size={14} />{item.client}</span>
+              <span class="tag"><Icon name="target" size={14} />{item.industry}</span>
+              <span class="tag"><Icon name="calendar" size={14} />{item.duration}</span>
+            </div>
+
+            <Snapshot item={item} />
+
+            <div class="cs-two">
+              <div class="cs-box card-glass"><h4>Challenge</h4><p>{item.challenge}</p></div>
+              <div class="cs-box card-glass"><h4>Solution</h4><p>{item.solution}</p></div>
+            </div>
+
+            <h4 class="cs-sub-title grad-red-2">Results That Matter</h4>
+            <div class="results">
+              {item.results.map((r) => (
+                <div class="result card-glass">
+                  <div class="result-value grad-red-2">{r.value}</div>
+                  <div class="result-text">{r.text}</div>
+                  <div class="result-label">{r.label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div class="cs-lists">
+              <div>
+                <h4>Strategies Used</h4>
+                <ul class="dot-list">{item.strategies.map((s) => <li>{s}</li>)}</ul>
+              </div>
+              <div>
+                <h4>Tools & Platforms</h4>
+                <div class="tags">{item.tools.map((t) => <span class="tag">{t}</span>)}</div>
+              </div>
+            </div>
+
+            <div class="cs-cta">
+              <a class="btn btn-primary" href={`/case-studies/${item.slug}/`} data-cta data-magnet data-location="case-studies" data-label={`${cs.readMoreLabel}: ${item.title}`}>
+                {cs.readMoreLabel}<Icon name="arrow" size={14} />
+              </a>
+              <a class="btn btn-outline" href="/#contact" data-cta data-magnet data-location="case-studies" data-label={`${cs.buttonLabel}: ${item.title}`}>
+                {cs.buttonLabel}
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var tabs = [].slice.call(document.querySelectorAll('.cs-tab'));
+    function select(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute('aria-selected', String(on));
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+      if (window.trackEvent) window.trackEvent('case_study_view', { case_study_title: tab.getAttribute('data-title') });
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { if (t.getAttribute('aria-selected') !== 'true') select(t); });
+      t.addEventListener('keydown', function (e) {
+        var n = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+        if (!n) return;
+        e.preventDefault();
+        select(tabs[(i + n + tabs.length) % tabs.length], true);
+      });
+    });
+  })();
+</script>

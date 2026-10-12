@@ -1,0 +1,134 @@
+---
+import Icon from './Icon.astro';
+import skills from '../data/skills.json';
+import certs from '../data/certifications.json';
+import values from '../data/values.json';
+import { rich } from '../lib/rich.js';
+const pct = (n) => Math.max(0, Math.min(100, Number(n) || 0));
+
+// ---- Tools sphere: every tool is a chip with its logo and its name.
+// Field "icon" picks the logo, written as "set:name":
+//   logos:google-ads         full-colour logos   (icon-sets.iconify.design/logos)
+//   fa6:amazon               one-colour brand icons (Font Awesome brands)
+//   vsc:file-type-excel      file-type icons (VS Code icons)
+//   si:semrush               one-colour brand icons (simpleicons.org)
+// A tool can also use its own uploaded logo (field "logo"). With neither, the chip shows its initials.
+import logos from '@iconify-json/logos/icons.json';
+import fa6 from '@iconify-json/fa6-brands/icons.json';
+import vsc from '@iconify-json/vscode-icons/icons.json';
+import * as si from 'simple-icons';
+const sets = { logos, fa6, vsc };
+const siBySlug = {};
+for (const v of Object.values(si)) if (v && v.slug) siBySlug[v.slug] = v;
+const findIcon = (ref) => {
+  if (!ref) return null;
+  const [set, name] = ref.includes(':') ? ref.split(':') : ['si', ref];
+  if (set === 'si') { const v = siBySlug[name]; return v ? { body: `<path fill="currentColor" d="${v.path}"/>`, w: 24, h: 24 } : null; }
+  const S = sets[set], ic = S && S.icons[name];
+  return ic ? { body: ic.body, w: ic.width || S.width || 16, h: ic.height || S.height || 16 } : null;
+};
+// The same logo is drawn twice on the page (sphere + plain list), so its inner ids must differ
+const withIds = (body, tag) => body.replace(/id="([^"]+)"/g, `id="$1${tag}"`).replace(/url\(#([^)]+)\)/g, `url(#$1${tag})`).replace(/href="#([^"]+)"/g, `href="#$1${tag}"`);
+const initials = (name) => {
+  const words = name.replace(/[^A-Za-z0-9 ]/g, ' ').trim().split(/\s+/);
+  return words.length > 1 ? (words[0][0] + words[1][0]).toUpperCase() : name.slice(0, 2);
+};
+const tools = skills.tools.map((t) => ({ ...t, ic: findIcon(t.icon) }));
+---
+<section id="skills" class="skills" data-shape="funnel" data-side="right" data-scale=".85" data-opacity=".5">
+  <div class="container">
+    <header class="section-head">
+      <div class="shape-spot" data-shape-spot aria-hidden="true"></div>
+      <h2 class="h2-plain">{skills.title}</h2>
+      <p class="section-sub" data-fade set:html={rich(skills.subtitle)} />
+    </header>
+
+    <div class="skill-grid" data-bars>
+      {skills.categories.map((c) => (
+        <div class="skill-card card-solid">
+          <div class="skill-head"><Icon name={c.icon} size={20} /><h3>{c.name}</h3></div>
+          <p class="skill-desc">{c.description}</p>
+          <div class="skill-items">
+            {c.items.map((it) => (
+              <div>
+                <div class="skill-row"><span class="skill-name">{it.name}</span><span class="skill-years">{it.years}</span></div>
+                <div class="bar" role="img" aria-label={`${it.name}: ${pct(it.level)}%`}><span style={`--w:${pct(it.level)}%`}></span></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <h3 class="sub-head">{skills.toolsTitle}</h3>
+    {skills.toolsSubtitle && <p class="sub-note" data-fade>{skills.toolsSubtitle}</p>}
+    <!-- Spinning sphere of tools (needs JavaScript). The plain list below is the fallback. -->
+    <div class="tools-3d">
+      <div class="tool-sphere" data-sphere data-cursor="Drag" aria-hidden="true">
+        <span class="sphere-core"></span>
+        {tools.map((t) => (
+          <span class="sphere-chip" style={`--c:${t.color || 'var(--red-500)'}`}>
+            <span class="tool-logo" aria-hidden="true">
+              {t.logo
+                ? <img src={t.logo} alt="" loading="lazy" decoding="async" />
+                : t.ic
+                  ? <svg viewBox={`0 0 ${t.ic.w} ${t.ic.h}`} set:html={withIds(t.ic.body, '-s')} />
+                  : <span class="tool-mono">{initials(t.name)}</span>}
+            </span>
+            <span class="tool-name">{t.name}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+    <ul class="tool-grid" data-sphere-fallback>
+      {tools.map((t) => (
+        <li class="tool-chip" style={`--c:${t.color || 'var(--red-500)'}`}>
+            <span class="tool-logo" aria-hidden="true">
+              {t.logo
+                ? <img src={t.logo} alt="" loading="lazy" decoding="async" />
+                : t.ic
+                  ? <svg viewBox={`0 0 ${t.ic.w} ${t.ic.h}`} set:html={withIds(t.ic.body, '-g')} />
+                  : <span class="tool-mono">{initials(t.name)}</span>}
+            </span>
+            <span class="tool-name">{t.name}</span>
+          </li>
+      ))}
+    </ul>
+
+    <h3 class="sub-head">{skills.certificationsTitle}</h3>
+    <div class="cert-grid">
+      {certs.items.map((c) => (
+        <div class="cert card-solid">
+          <div class="cert-icon"><Icon name="award" size={20} /></div>
+          <div class="cert-name">{c.name}</div>
+          <div class="cert-issuer">{c.issuer}</div>
+          <div class="cert-year">{c.year}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="values">
+      <h3>{values.title}</h3>
+      <div class="value-grid">
+        {values.items.map((v) => (
+          <div class="value"><Icon name={v.icon} size={26} /><h4>{v.title}</h4><p>{v.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    // Skill bars fill when they scroll into view
+    [['[data-bars]', 0.15]].forEach(function (cfg) {
+      var el = document.querySelector(cfg[0]);
+      if (!el) return;
+      if (!('IntersectionObserver' in window)) { el.classList.add('is-visible'); return; }
+      var io = new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { el.classList.add('is-visible'); io.disconnect(); }
+      }, { threshold: cfg[1] });
+      io.observe(el);
+    });
+  })();
+</script>

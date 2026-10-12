@@ -1,0 +1,11 @@
+---
+import settings from '../data/settings.json';
+const year = new Date().getFullYear();
+---
+<footer class="footer" id="footer">
+  <div class="container">
+    <a href="/#hero" class="brand"><span class="brand-mark" aria-hidden="true"></span>{settings.name.toUpperCase()}</a>
+    <p class="footer-copy">© {year} {settings.footerTagline}</p>
+    {settings.footerNote && <p class="footer-note">{settings.footerNote}</p>}
+  </div>
+</footer>

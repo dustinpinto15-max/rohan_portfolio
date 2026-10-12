@@ -1,0 +1,61 @@
+{
+  "eyebrow": "Trusted by",
+  "title": "Brands I've helped grow",
+  "subtitle": "From D2C startups to big names in [[retail, hospitality and healthcare]]. I planned, ran and scaled their campaigns.",
+  "items": [
+    {
+      "name": "Villain",
+      "category": "Men's Grooming",
+      "logo": "/clients/villain.png",
+      "logoColor": "/clients/villain-color.png"
+    },
+    {
+      "name": "Livspace",
+      "category": "Home Interiors",
+      "logo": "/clients/livspace.png",
+      "logoColor": "/clients/livspace-color.png"
+    },
+    {
+      "name": "Radisson Blu",
+      "category": "Hospitality",
+      "logo": "/clients/radisson-blu.png",
+      "logoColor": "/clients/radisson-blu-color.png"
+    },
+    {
+      "name": "Lux Cozi",
+      "category": "Fashion & Innerwear",
+      "logo": "/clients/lux-cozi.png",
+      "logoColor": "/clients/lux-cozi-color.png"
+    },
+    {
+      "name": "Nova IVF Fertility",
+      "category": "Healthcare",
+      "logo": "/clients/nova-ivf.png",
+      "logoColor": "/clients/nova-ivf-color.png"
+    },
+    {
+      "name": "Nura",
+      "category": "Health Screening",
+      "logo": "/clients/nura.png",
+      "logoColor": "/clients/nura-color.png"
+    },
+    {
+      "name": "The White Teak Company",
+      "category": "Lighting & Décor",
+      "logo": "/clients/white-teak.png",
+      "logoColor": "/clients/white-teak-color.png"
+    },
+    {
+      "name": "Ceriz",
+      "category": "",
+      "logo": "/clients/ceriz.png",
+      "logoColor": "/clients/ceriz-color.png"
+    },
+    {
+      "name": "Ramraj Cotton",
+      "category": "Fashion",
+      "logo": "/clients/ramraj.png",
+      "logoColor": "/clients/ramraj-color.png"
+    }
+  ]
+}

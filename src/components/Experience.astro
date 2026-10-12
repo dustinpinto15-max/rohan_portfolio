@@ -1,0 +1,79 @@
+---
+import Icon from './Icon.astro';
+import exp from '../data/experience.json';
+import certs from '../data/certifications.json';
+import { rich } from '../lib/rich.js';
+---
+<section id="experience" class="section section-grad" data-shape="rocket" data-side="right" data-scale=".9" data-opacity=".5">
+  <div class="container">
+    <header class="section-head">
+      <div class="shape-spot" data-shape-spot aria-hidden="true"></div>
+      <span class="eyebrow" data-fade><span class="dot"></span>{exp.eyebrow}</span>
+      <h2 class="h2-big grad-white">{exp.title}</h2>
+      <p class="section-sub" data-fade set:html={rich(exp.subtitle)} />
+    </header>
+
+    <div class="exp-grid">
+      <div class="jobs">
+        {exp.jobs.map((job) => (
+          <article class="job card-glass">
+            <div class="job-top">
+              <div>
+                <h3 class="job-title grad-white">{job.title}</h3>
+                <div class="job-meta">
+                  <span class="job-company">{job.company}</span>
+                  {job.location && <span class="job-loc"><Icon name="pin" size={13} />{job.location}</span>}
+                </div>
+              </div>
+              <span class="period"><Icon name="calendar" size={13} />{job.period}</span>
+            </div>
+            {job.achievements?.length > 0 && (
+              <>
+                <h4>Key Achievements:</h4>
+                <ul class="achievements">
+                  {job.achievements.map((a) => (
+                    <li><span class="ach-icon"><Icon name="trending" size={11} /></span><span>{a}</span></li>
+                  ))}
+                </ul>
+              </>
+            )}
+            {job.tools?.length > 0 && (
+              <>
+                <h4>Technologies Used:</h4>
+                <div class="tags">{job.tools.map((t) => <span class="tag">{t}</span>)}</div>
+              </>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <aside class="sidebar">
+        {exp.highlights?.length > 0 && (
+          <div class="side-card side-highlight">
+            <h3 class="grad-red-2">{exp.highlightsTitle}</h3>
+            <ul class="side-list">
+              {exp.highlights.map((h) => <li><span class="ach-icon"><Icon name="award" size={11} /></span><span>{h}</span></li>)}
+            </ul>
+          </div>
+        )}
+        <div class="side-card card-glass">
+          <h3 class="grad-red-2">Certifications</h3>
+          <ul class="side-list">
+            {certs.items.map((c) => <li><span class="side-dot"></span><span>{c.name} ({c.issuer})</span></li>)}
+          </ul>
+        </div>
+        <div class="side-card card-glass">
+          <h3 class="grad-red-2">Education</h3>
+          {exp.education.map((e) => (
+            <div class="edu">
+              <div class="edu-degree">{e.degree}</div>
+              {e.field && <div class="edu-field">{e.field}</div>}
+              <div class="edu-field">{e.school}</div>
+              {e.years && <div class="edu-school">{e.years}</div>}
+            </div>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

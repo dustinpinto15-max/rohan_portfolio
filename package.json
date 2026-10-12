@@ -1,0 +1,28 @@
+{
+  "name": "marketing-portfolio",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build && node scripts/add-headers.mjs",
+    "preview": "astro preview",
+    "cms": "npx decap-server"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@astrojs/vercel": "^11.0.11",
+    "@fontsource-variable/inter": "^5.3.0",
+    "astro": "^7.3.5",
+    "lenis": "^1.3.26",
+    "simple-icons": "^16.34.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@iconify-json/fa6-brands": "^1.2.6",
+    "@iconify-json/logos": "^1.2.15",
+    "@iconify-json/vscode-icons": "^1.2.85"
+  }
+}
